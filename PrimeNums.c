@@ -27,13 +27,16 @@ void freeArray(Array *a) {
     a->used = a->size = 0;
 }
 
-int main() {
+int main(int argc, char *argv[]) {
     Array primes;
     int num, ITERATIONS;
-    printf("Number of iterations?\n");
-    scanf("%d", &ITERATIONS);
-    printf("\n");
-
+    if(argc < 2) {
+        printf("Number of iterations?\n");
+        scanf("%d", &ITERATIONS);
+        printf("\n");
+    }else {
+        ITERATIONS = atoi(argv[1]);
+    }
     initArray(&primes, 10);
     insertArray(&primes, 2);
 
@@ -44,6 +47,8 @@ int main() {
                 isprime = 0;
                 break;
             }
+            if(primes.array[i] > num / 2)
+                break;
         }
         if(isprime == 1) {
             insertArray(&primes, num);
