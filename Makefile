@@ -1,3 +1,3 @@
 compile:
-	gcc PrimeNums.c -o genPrimeNums
+	gcc PrimeNums.c -o genPrimeNums -lm
 	./genPrimeNums

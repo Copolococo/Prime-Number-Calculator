@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <math.h>
 
 typedef struct {
     int *array;
@@ -39,16 +40,25 @@ int main(int argc, char *argv[]) {
     }
     initArray(&primes, 10);
     insertArray(&primes, 2);
+    insertArray(&primes, 3);
+    printf("2\n3\n");
 
-    for(num=3; num<ITERATIONS;num++) {   
+    for(num=4; num<ITERATIONS;num++) {   
         int i, isprime = 1;
-        for(i=0; i<primes.used; i++) {
+        if ( num%6 == 1 || num%6 == 5)
+        {
+        for(i=0; primes.array[i]<=sqrt(num); i++) {
             if(num % primes.array[i] == 0) {
                 isprime = 0;
                 break;
             }
             if(primes.array[i] > num / 2)
                 break;
+        }
+        }
+        else
+        {
+            isprime = 0;
         }
         if(isprime == 1) {
             insertArray(&primes, num);
@@ -57,6 +67,6 @@ int main(int argc, char *argv[]) {
     }
 
     freeArray(&primes);
-    system("pause");
+    //system("pause");
     return 0;
 }
